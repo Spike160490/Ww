@@ -34,9 +34,6 @@
 			simple-audio-card,widgets = 
                           "Microphone", "Microphone Jack",
                           "Headphone", "Headphone Jack";
-                        simple-audio-card,routing =
-                          "MIC_IN", "Microphone Jack",
-                          "Headphone Jack", "HP_OUT";
 			status = "okay";
 			simple-audio-card,cpu {
 				sound-dai = <&i2s_clk_consumer>;

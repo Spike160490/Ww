@@ -1,0 +1,21 @@
+sound {
+        compatible = "simple-audio-card";
+        simple-audio-card,name = "pcm1808";
+        simple-audio-card,format = "i2s";
+        simple-audio-card,bitclock-master = <&dailink0_master>;
+        simple-audio-card,frame-master = <&dailink0_master>;
+        simple-audio-card,widgets =
+                "Microphone", "Microphone Jack",
+                "Headphone", "Headphone Jack";
+        simple-audio-card,routing =
+                "MIC_IN", "Microphone Jack",
+                "Headphone Jack", "HP_OUT";
+        simple-audio-card,cpu {
+            sound-dai = <&sh_fsi2 0>;
+        };
+
+        dailink0_master: simple-audio-card,codec {
+            sound-dai = <&ak4648>;
+            clocks = <&osc>;
+        };
+    };

@@ -4,14 +4,34 @@
 / {
     compatible = "brcm,bcm2708";
 
-    fragment@0 {
+   fragment@0 {
+		target = <&sound>;
+		__overlay__ {
+			compatible = "hifiberry,hifiberry-dac";
+			i2s-controller = <&i2s>;
+			status = "okay";
+		};
+	};
+
+	fragment@1 {
+		target-path = "/";
+		__overlay__ {
+			pcm5102a-codec {
+				#sound-dai-cells = <0>;
+				compatible = "ti,pcm5102a";
+				status = "okay";
+			};
+		};
+	};
+
+    fragment@2 {
         target = <&i2s>;
         __overlay__ {
             status = "okay";
         };
     };
 
-    fragment@1 {
+    fragment@3 {
         target-path = "/";
         __overlay__ {
             card_codec: card-codec {
@@ -22,7 +42,7 @@
         };
     };
 
-    fragment@2 {
+    fragment@4 {
         target = <&sound>;
         master_overlay: __dormant__ {
             compatible = "simple-audio-card";
@@ -40,7 +60,7 @@
         };
     };
 
-    fragment@3 {
+    fragment@5 {
         target = <&sound>;
         slave_overlay: __overlay__ {
                 compatible = "simple-audio-card";
